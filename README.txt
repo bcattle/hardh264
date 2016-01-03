@@ -11,3 +11,4 @@ tests - test code and test vectors
 
 Source code and other files are released here under a BSD-style licence
 
+This is a mirror of the original project located at http://hardh264.sourceforge.net/
