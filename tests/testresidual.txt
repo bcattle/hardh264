@@ -1,0 +1,654 @@
+# test residuals for H264 coretransform module
+# Andy Henson May2008
+#
+# each line has 16 residuals, of which 16 or 4 may be used
+#
+#ones and zeros
+residual 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+residual 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 0
+residual 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0
+residual 0 1 0 1 0 1 0 1 0 1 0 0 0 0 0 0
+residual 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0
+residual 0 0 1 0 0 1 0 1 0 0 0 0 0 0 0 0
+residual 0 0 1 0 0 1 0 0 1 0 0 1 0 0 0 0
+residual 0 0 1 0 1 0 0 1 0 1 1 0 0 0 0 0
+#numbers
+residual 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+residual 1 2 3 4 2 3 4 5 6 10 11 12 23 24 25 26
+residual 1 2 3 4 1 2 3 4 6 14 51 62 73 84 95 99
+#big numbers
+residual 255 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 255 255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0
+residual 255 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0
+residual 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255 255
+residual 0 255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 255 0 255 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 255 0 255 0 255 0 0 0 0 0 0 0 0 0 0
+residual 0 255 0 255 0 255 0 255 0 0 0 0 0 0 0 0
+residual 0 255 0 255 0 255 0 255 0 255 0 0 0 0 0 0
+residual 0 0 255 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 0 255 0 0 255 0 0 0 0 0 0 0 0 0 0
+residual 0 0 255 0 0 255 0 255 0 0 0 0 0 0 0 0
+residual 0 0 255 0 0 255 0 0 255 0 0 255 0 0 0 0
+residual 0 0 255 0 255 0 0 255 0 255 255 0 0 0 0 0
+#negative trailing ones, with runs of zeros
+residual -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -1 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -1 -1 -1 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+residual 0 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 -1 0 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 -1 0 -1 0 -1 0 0 0 0 0 0 0 0 0 0
+residual 0 -1 0 -1 0 -1 0 -1 0 0 0 0 0 0 0 0
+residual 0 -1 0 -1 0 -1 0 -1 0 -1 0 0 0 0 0 0
+residual 0 0 -1 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 0 -1 0 0 -1 0 0 0 0 0 0 0 0 0 0
+residual 0 0 -1 0 0 -1 0 -1 0 0 0 0 0 0 0 0
+residual 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0 0
+residual 0 0 -1 0 -1 0 0 -1 0 -1 -1 0 0 0 0 0
+#negative numbers
+residual -1 -2 -3 -4 -5 -6 -7 -8 -9 -10 -11 -12 -13 -14 -15 -16
+residual -1 -2 -3 -4 -2 -3 -4 -5 -6 -10 -11 -12 -23 -24 -25 -26
+residual -1 -2 -3 -4 -1 -2 -3 -4 -6 -14 -51 -62 -73 -84 -95 -99
+#mixed numbers
+residual 1 -2 -3 -4 -5 -6 -7 -8 -9 -10 -11 -12 -13 -14 -15 -16
+residual 1 2 -3 -4 -5 -6 -7 -8 -9 -10 -11 -12 -13 -14 -15 -16
+residual 1 2 3 -4 -5 -6 -7 -8 -9 -10 -11 -12 -13 -14 -15 -16
+residual 1 2 3 4 5 -6 -7 -8 -9 -10 -11 -12 -13 -14 -15 -16
+residual 1 2 3 4 5 6 -7 -8 -9 -10 -11 -12 -13 -14 -15 -16
+residual 1 2 3 4 5 6 7 -8 -9 -10 -11 -12 -13 -14 -15 -16
+residual 1 2 3 4 5 6 7 8 -9 -10 -11 -12 -13 -14 -15 -16
+residual 1 2 3 4 5 6 7 8 9 -10 -11 -12 -13 -14 -15 -16
+residual 1 2 3 4 5 6 7 8 9 10 -11 -12 -13 -14 -15 -16
+residual 1 2 3 4 5 6 7 8 9 10 11 -12 -13 -14 -15 -16
+residual 1 2 3 4 5 6 7 8 9 10 11 12 -13 -14 -15 -16
+residual 1 2 3 4 5 6 7 8 9 10 11 12 13 -14 -15 -16
+residual 1 2 3 4 5 6 7 8 9 10 11 12 13 14 -15 -16
+residual 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 -16
+residual 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+#negative big numbers
+residual -255 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -255 -255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -255 -255 -255 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -255 -255 -255 -255 0 0 0 0 0 0 0 0 0 0 0 0
+residual -255 -255 -255 -255 -255 0 0 0 0 0 0 0 0 0 0 0
+residual -255 -255 -255 -255 -255 -255 -255 -255 -255 -255 -255 -255 -255 -255 -255 -255
+residual 0 -255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 -255 0 -255 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 -255 0 -255 0 -255 0 0 0 0 0 0 0 0 0 0
+residual 0 -255 0 -255 0 -255 0 -255 0 0 0 0 0 0 0 0
+residual 0 -255 0 -255 0 -255 0 -255 0 -255 0 0 0 0 0 0
+residual 0 0 -255 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 0 -255 0 0 -255 0 0 0 0 0 0 0 0 0 0
+residual 0 0 -255 0 0 -255 0 -255 0 0 0 0 0 0 0 0
+residual 0 0 -255 0 0 -255 0 0 -255 0 0 -255 0 0 0 0
+residual 0 0 -255 0 -255 0 0 -255 0 -255 -255 0 0 0 0 0
+#mixed big numbers
+residual -255 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -255 255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -255 255 -255 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -255 -255 255 -255 0 0 0 0 0 0 0 0 0 0 0 0
+residual -255 255 255 -255 255 0 0 0 0 0 0 0 0 0 0 0
+residual -255 -255 255 -255 255 -255 -255 255 -255 -255 255 -255 -255 255 255 255
+residual 0 -255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 -255 0 -255 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 -255 0 -255 0 -255 0 0 0 0 0 0 0 0 0 0
+residual 0 -255 0 -255 0 255 0 -255 0 0 0 0 0 0 0 0
+residual 0 -255 0 255 0 -255 0 -255 0 -255 0 0 0 0 0 0
+residual 0 0 -255 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 0 255 0 0 -255 0 0 0 0 0 0 0 0 0 0
+residual 0 0 -255 0 0 -255 0 255 0 0 0 0 0 0 0 0
+residual 0 0 255 0 0 255 0 0 -255 0 0 255 0 0 0 0
+residual 0 0 255 0 -255 0 0 255 0 -255 255 0 0 0 0 0
+#additional tests, mostly test coeffs built for CAVLC test (well, they are test vectors) 
+residual 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 2 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 2 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 2 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+residual 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 2 0 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 2 0 1 0 1 0 0 0 0 0 0 0 0 0 0
+residual 0 2 0 1 0 1 0 1 0 0 0 0 0 0 0 0
+residual 0 2 0 1 0 1 0 1 0 1 0 0 0 0 0 0
+residual 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 0
+residual 0 0 2 0 0 1 0 1 0 0 0 0 0 0 0 0
+residual 0 0 2 0 0 1 0 0 1 0 0 1 0 0 0 0
+residual 0 0 2 0 1 0 0 1 0 1 1 0 0 0 0 0
+#residuals with runs of zeros
+residual 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 4 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 4 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 4 2 2 2 0 0 0 0 0 0 0 0 0 0 0 0
+residual 4 2 2 2 2 0 0 0 0 0 0 0 0 0 0 0
+residual 4 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+residual 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 4 0 2 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 4 0 2 0 2 0 0 0 0 0 0 0 0 0 0
+residual 0 4 0 2 0 2 0 2 0 0 0 0 0 0 0 0
+residual 0 4 0 2 0 2 0 2 0 2 0 0 0 0 0 0
+residual 0 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 0 4 0 0 2 0 0 0 0 0 0 0 0 0 0
+residual 0 0 4 0 0 2 0 2 0 0 0 0 0 0 0 0
+residual 0 0 4 0 0 2 0 0 2 0 0 2 0 0 0 0
+residual 0 0 4 0 2 0 0 2 0 2 2 0 0 0 0 0
+residual 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 1, all types
+residual 3 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 3 2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 4 2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 15 2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 16 2 0 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 2, all types
+residual 3 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 1 4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 2 4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 6 4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 7 4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 30 4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 31 4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 32 4 0 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 3, all types
+residual 3 0 7 4 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 1 7 4 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 2 7 4 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 12 7 4 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 13 7 4 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 60 7 4 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 61 7 4 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 4, all types
+residual 3 0 13 7 4 0 0 0 0 0 0 0 0 0 0 0
+residual 3 1 13 7 4 0 0 0 0 0 0 0 0 0 0 0
+residual 3 2 13 7 4 0 0 0 0 0 0 0 0 0 0 0
+residual 3 24 13 7 4 0 0 0 0 0 0 0 0 0 0 0
+residual 3 25 13 7 4 0 0 0 0 0 0 0 0 0 0 0
+residual 3 120 13 7 4 0 0 0 0 0 0 0 0 0 0 0
+residual 3 121 13 7 4 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 5, all types
+residual 3 0 25 13 7 4 0 0 0 0 0 0 0 0 0 0
+residual 3 1 25 13 7 4 0 0 0 0 0 0 0 0 0 0
+residual 3 2 25 13 7 4 0 0 0 0 0 0 0 0 0 0
+residual 3 48 25 13 7 4 0 0 0 0 0 0 0 0 0 0
+residual 3 49 25 13 7 4 0 0 0 0 0 0 0 0 0 0
+residual 3 240 25 13 7 4 0 0 0 0 0 0 0 0 0 0
+residual 3 241 25 13 7 4 0 0 0 0 0 0 0 0 0 0
+#2nd is 6, all types
+residual 3 0 49 25 13 7 4 0 0 0 0 0 0 0 0 0
+residual 3 1 49 25 13 7 4 0 0 0 0 0 0 0 0 0
+residual 3 2 49 25 13 7 4 0 0 0 0 0 0 0 0 0
+#2nd is 1, all types, trailing one
+residual 3 0 2 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 1 2 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 2 2 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 3 2 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 4 2 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 15 2 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 16 2 1 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 2, all types, trailing one
+residual 3 0 4 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 1 4 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 2 4 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 6 4 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 7 4 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 30 4 1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 3 31 4 1 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 3, all types, trailing one
+residual 3 0 7 4 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 1 7 4 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 2 7 4 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 12 7 4 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 13 7 4 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 60 7 4 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 61 7 4 1 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 4, all types, trailing one
+residual 3 0 13 7 4 1 0 0 0 0 0 0 0 0 0 0
+residual 3 1 13 7 4 1 0 0 0 0 0 0 0 0 0 0
+residual 3 2 13 7 4 1 0 0 0 0 0 0 0 0 0 0
+residual 3 24 13 7 4 1 0 0 0 0 0 0 0 0 0 0
+residual 3 25 13 7 4 1 0 0 0 0 0 0 0 0 0 0
+residual 3 120 13 7 4 1 0 0 0 0 0 0 0 0 0 0
+residual 3 121 13 7 4 1 0 0 0 0 0 0 0 0 0 0
+#2nd is 5, all types, trailing one
+residual 3 0 25 13 7 4 1 0 0 0 0 0 0 0 0 0
+residual 3 1 25 13 7 4 1 0 0 0 0 0 0 0 0 0
+residual 3 2 25 13 7 4 1 0 0 0 0 0 0 0 0 0
+residual 3 48 25 13 7 4 1 0 0 0 0 0 0 0 0 0
+residual 3 49 25 13 7 4 1 0 0 0 0 0 0 0 0 0
+residual 3 240 25 13 7 4 1 0 0 0 0 0 0 0 0 0
+residual 3 241 25 13 7 4 1 0 0 0 0 0 0 0 0 0
+#2nd is 6, all types, trailing one
+residual 3 0 49 25 13 7 4 1 0 0 0 0 0 0 0 0
+residual 3 1 49 25 13 7 4 1 0 0 0 0 0 0 0 0
+residual 3 2 49 25 13 7 4 1 0 0 0 0 0 0 0 0
+#2nd is 1, all types, trailing one
+residual 3 0 2 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 1 2 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 2 2 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 3 2 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 4 2 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 15 2 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 16 2 1 1 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 2, all types, trailing one
+residual 3 0 4 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 1 4 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 2 4 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 6 4 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 7 4 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 30 4 1 1 0 0 0 0 0 0 0 0 0 0 0
+residual 3 31 4 1 1 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 3, all types, trailing one
+residual 3 0 7 4 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 1 7 4 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 2 7 4 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 12 7 4 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 13 7 4 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 60 7 4 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 61 7 4 1 1 0 0 0 0 0 0 0 0 0 0
+#2nd is 4, all types, trailing one
+residual 3 0 13 7 4 1 1 0 0 0 0 0 0 0 0 0
+residual 3 1 13 7 4 1 1 0 0 0 0 0 0 0 0 0
+residual 3 2 13 7 4 1 1 0 0 0 0 0 0 0 0 0
+residual 3 24 13 7 4 1 1 0 0 0 0 0 0 0 0 0
+residual 3 25 13 7 4 1 1 0 0 0 0 0 0 0 0 0
+residual 3 120 13 7 4 1 1 0 0 0 0 0 0 0 0 0
+residual 3 121 13 7 4 1 1 0 0 0 0 0 0 0 0 0
+#2nd is 5, all types, trailing one
+residual 3 0 25 13 7 4 1 1 0 0 0 0 0 0 0 0
+residual 3 1 25 13 7 4 1 1 0 0 0 0 0 0 0 0
+residual 3 2 25 13 7 4 1 1 0 0 0 0 0 0 0 0
+residual 3 48 25 13 7 4 1 1 0 0 0 0 0 0 0 0
+residual 3 49 25 13 7 4 1 1 0 0 0 0 0 0 0 0
+residual 3 240 25 13 7 4 1 1 0 0 0 0 0 0 0 0
+residual 3 241 25 13 7 4 1 1 0 0 0 0 0 0 0 0
+#2nd is 6, all types, trailing one
+residual 3 0 49 25 13 7 4 1 1 0 0 0 0 0 0 0
+residual 3 1 49 25 13 7 4 1 1 0 0 0 0 0 0 0
+residual 3 2 49 25 13 7 4 1 1 0 0 0 0 0 0 0
+#2nd is 1, all types, trailing one
+residual 3 0 2 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 1 2 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 2 2 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 3 2 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 4 2 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 15 2 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 16 2 1 1 1 0 0 0 0 0 0 0 0 0 0
+#2nd is 2, all types, trailing one
+residual 3 0 4 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 1 4 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 2 4 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 6 4 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 7 4 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 30 4 1 1 1 0 0 0 0 0 0 0 0 0 0
+residual 3 31 4 1 1 1 0 0 0 0 0 0 0 0 0 0
+#2nd is 3, all types, trailing one
+residual 3 0 7 4 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 1 7 4 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 2 7 4 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 12 7 4 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 13 7 4 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 60 7 4 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 61 7 4 1 1 1 0 0 0 0 0 0 0 0 0
+#2nd is 4, all types, trailing one
+residual 3 0 13 7 4 1 1 1 0 0 0 0 0 0 0 0
+residual 3 1 13 7 4 1 1 1 0 0 0 0 0 0 0 0
+residual 3 2 13 7 4 1 1 1 0 0 0 0 0 0 0 0
+residual 3 24 13 7 4 1 1 1 0 0 0 0 0 0 0 0
+residual 3 25 13 7 4 1 1 1 0 0 0 0 0 0 0 0
+residual 3 120 13 7 4 1 1 1 0 0 0 0 0 0 0 0
+residual 3 121 13 7 4 1 1 1 0 0 0 0 0 0 0 0
+#2nd is 5, all types, trailing one
+residual 3 0 25 13 7 4 1 1 1 0 0 0 0 0 0 0
+residual 3 1 25 13 7 4 1 1 1 0 0 0 0 0 0 0
+residual 3 2 25 13 7 4 1 1 1 0 0 0 0 0 0 0
+residual 3 48 25 13 7 4 1 1 1 0 0 0 0 0 0 0
+residual 3 49 25 13 7 4 1 1 1 0 0 0 0 0 0 0
+residual 3 240 25 13 7 4 1 1 1 0 0 0 0 0 0 0
+residual 3 241 25 13 7 4 1 1 1 0 0 0 0 0 0 0
+#2nd is 6, all types, trailing one
+residual 3 0 49 25 13 7 4 1 1 1 0 0 0 0 0 0
+residual 3 1 49 25 13 7 4 1 1 1 0 0 0 0 0 0
+residual 3 2 49 25 13 7 4 1 1 1 0 0 0 0 0 0
+#2nd is 1, all types, trailing one
+residual 3 0 2 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 1 2 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 2 2 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 3 2 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 4 2 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 15 2 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 16 2 1 1 1 1 0 0 0 0 0 0 0 0 0
+#2nd is 2, all types, trailing one
+residual 3 0 4 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 1 4 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 2 4 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 6 4 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 7 4 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 30 4 1 1 1 1 0 0 0 0 0 0 0 0 0
+residual 3 31 4 1 1 1 1 0 0 0 0 0 0 0 0 0
+#2nd is 3, all types, trailing one
+residual 3 0 7 4 1 1 1 1 0 0 0 0 0 0 0 0
+residual 3 1 7 4 1 1 1 1 0 0 0 0 0 0 0 0
+residual 3 2 7 4 1 1 1 1 0 0 0 0 0 0 0 0
+residual 3 12 7 4 1 1 1 1 0 0 0 0 0 0 0 0
+residual 3 13 7 4 1 1 1 1 0 0 0 0 0 0 0 0
+residual 3 60 7 4 1 1 1 1 0 0 0 0 0 0 0 0
+residual 3 61 7 4 1 1 1 1 0 0 0 0 0 0 0 0
+#2nd is 4, all types, trailing one
+residual 3 0 13 7 4 1 1 1 1 0 0 0 0 0 0 0
+residual 3 1 13 7 4 1 1 1 1 0 0 0 0 0 0 0
+residual 3 2 13 7 4 1 1 1 1 0 0 0 0 0 0 0
+residual 3 24 13 7 4 1 1 1 1 0 0 0 0 0 0 0
+residual 3 25 13 7 4 1 1 1 1 0 0 0 0 0 0 0
+residual 3 120 13 7 4 1 1 1 1 0 0 0 0 0 0 0
+residual 3 121 13 7 4 1 1 1 1 0 0 0 0 0 0 0
+#2nd is 5, all types, trailing one
+residual 3 0 25 13 7 4 1 1 1 1 0 0 0 0 0 0
+residual 3 1 25 13 7 4 1 1 1 1 0 0 0 0 0 0
+residual 3 2 25 13 7 4 1 1 1 1 0 0 0 0 0 0
+residual 3 48 25 13 7 4 1 1 1 1 0 0 0 0 0 0
+residual 3 49 25 13 7 4 1 1 1 1 0 0 0 0 0 0
+residual 3 240 25 13 7 4 1 1 1 1 0 0 0 0 0 0
+residual 3 241 25 13 7 4 1 1 1 1 0 0 0 0 0 0
+#2nd is 6, all types, trailing one
+residual 3 0 49 25 13 7 4 1 1 1 1 0 0 0 0 0
+residual 3 1 49 25 13 7 4 1 1 1 1 0 0 0 0 0
+residual 3 2 49 25 13 7 4 1 1 1 1 0 0 0 0 0
+#residual plus trailing ones, with runs of zeros
+residual -2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -2 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -2 -1 -1 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -2 -1 -1 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -2 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+residual 0 -2 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 -2 0 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 -2 0 -1 0 -1 0 0 0 0 0 0 0 0 0 0
+residual 0 -2 0 -1 0 -1 0 -1 0 0 0 0 0 0 0 0
+residual 0 -2 0 -1 0 -1 0 -1 0 -1 0 0 0 0 0 0
+residual 0 0 -2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 0 -2 0 0 -1 0 0 0 0 0 0 0 0 0 0
+residual 0 0 -2 0 0 -1 0 -1 0 0 0 0 0 0 0 0
+residual 0 0 -2 0 0 -1 0 0 -1 0 0 -1 0 0 0 0
+residual 0 0 -2 0 -1 0 0 -1 0 -1 -1 0 0 0 0 0
+#residuals with runs of zeros
+residual -4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -4 -2 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -4 -2 -2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -4 -2 -2 -2 0 0 0 0 0 0 0 0 0 0 0 0
+residual -4 -2 -2 -2 -2 0 0 0 0 0 0 0 0 0 0 0
+residual -4 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2
+residual 0 -4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 -4 0 -2 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 -4 0 -2 0 -2 0 0 0 0 0 0 0 0 0 0
+residual 0 -4 0 -2 0 -2 0 -2 0 0 0 0 0 0 0 0
+residual 0 -4 0 -2 0 -2 0 -2 0 -2 0 0 0 0 0 0
+residual 0 0 -4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual 0 0 -4 0 0 -2 0 0 0 0 0 0 0 0 0 0
+residual 0 0 -4 0 0 -2 0 -2 0 0 0 0 0 0 0 0
+residual 0 0 -4 0 0 -2 0 0 -2 0 0 -2 0 0 0 0
+residual 0 0 -4 0 -2 0 0 -2 0 -2 -2 0 0 0 0 0
+#2nd is 0, all types
+residual -3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -3 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -5 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -6 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -8 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -9 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -15 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -16 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -17 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 1, all types
+residual -3 0 -2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -3 -2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -4 -2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -15 -2 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -16 -2 0 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 2, all types
+residual -3 0 -4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -6 -4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -7 -4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -30 -4 0 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -31 -4 0 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 3, all types
+residual -3 0 -7 -4 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -7 -4 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -7 -4 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -12 -7 -4 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -13 -7 -4 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -60 -7 -4 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -61 -7 -4 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 4, all types
+residual -3 0 -13 -7 -4 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -13 -7 -4 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -13 -7 -4 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -24 -13 -7 -4 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -25 -13 -7 -4 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -120 -13 -7 -4 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -121 -13 -7 -4 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 5, all types
+residual -3 0 -25 -13 -7 -4 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -25 -13 -7 -4 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -25 -13 -7 -4 0 0 0 0 0 0 0 0 0 0
+residual -3 -48 -25 -13 -7 -4 0 0 0 0 0 0 0 0 0 0
+residual -3 -49 -25 -13 -7 -4 0 0 0 0 0 0 0 0 0 0
+residual -3 -240 -25 -13 -7 -4 0 0 0 0 0 0 0 0 0 0
+residual -3 -241 -25 -13 -7 -4 0 0 0 0 0 0 0 0 0 0
+#2nd is 6, all types
+residual -3 0 -49 -25 -13 -7 -4 0 0 0 0 0 0 0 0 0
+residual -3 -1 -49 -25 -13 -7 -4 0 0 0 0 0 0 0 0 0
+residual -3 -2 -49 -25 -13 -7 -4 0 0 0 0 0 0 0 0 0
+#2nd is 1, all types, trailing one
+residual -3 0 -2 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -2 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -2 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -3 -2 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -4 -2 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -15 -2 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -16 -2 -1 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 2, all types, trailing one
+residual -3 0 -4 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -4 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -4 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -6 -4 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -7 -4 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -30 -4 -1 0 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -31 -4 -1 0 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 3, all types, trailing one
+residual -3 0 -7 -4 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -7 -4 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -7 -4 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -12 -7 -4 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -60 -7 -4 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -61 -7 -4 -1 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 4, all types, trailing one
+residual -3 0 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -24 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -25 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -120 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -121 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0 0
+#2nd is 5, all types, trailing one
+residual -3 0 -25 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0
+residual -3 -1 -25 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0
+residual -3 -2 -25 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0
+residual -3 -48 -25 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0
+residual -3 -49 -25 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0
+residual -3 -240 -25 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0
+residual -3 -241 -25 -13 -7 -4 -1 0 0 0 0 0 0 0 0 0
+#2nd is 6, all types, trailing one
+residual -3 0 -49 -25 -13 -7 -4 -1 0 0 0 0 0 0 0 0
+residual -3 -1 -49 -25 -13 -7 -4 -1 0 0 0 0 0 0 0 0
+residual -3 -2 -49 -25 -13 -7 -4 -1 0 0 0 0 0 0 0 0
+#2nd is 1, all types, trailing one
+residual -3 0 -2 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -2 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -2 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -3 -2 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -4 -2 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -15 -2 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -16 -2 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 2, all types, trailing one
+residual -3 0 -4 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -4 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -4 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -6 -4 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -30 -4 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+residual -3 -31 -4 -1 -1 0 0 0 0 0 0 0 0 0 0 0
+#2nd is 3, all types, trailing one
+residual -3 0 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -12 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -60 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -61 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0 0
+#2nd is 4, all types, trailing one
+residual -3 0 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -1 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -2 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -24 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -25 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -120 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -121 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0 0
+#2nd is 5, all types, trailing one
+residual -3 0 -25 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -1 -25 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -2 -25 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -48 -25 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -49 -25 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -240 -25 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -241 -25 -13 -7 -4 -1 -1 0 0 0 0 0 0 0 0
+#2nd is 6, all types, trailing one
+residual -3 0 -49 -25 -13 -7 -4 -1 -1 0 0 0 0 0 0 0
+residual -3 -1 -49 -25 -13 -7 -4 -1 -1 0 0 0 0 0 0 0
+residual -3 -2 -49 -25 -13 -7 -4 -1 -1 0 0 0 0 0 0 0
+#2nd is 1, all types, trailing one
+residual -3 0 -2 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -2 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -2 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -3 -2 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -4 -2 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -15 -2 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -16 -2 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+#2nd is 2, all types, trailing one
+residual -3 0 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -1 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -2 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -6 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -30 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+residual -3 -31 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+#2nd is 3, all types, trailing one
+residual -3 0 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -1 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -2 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -12 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -60 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -61 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0 0
+#2nd is 4, all types, trailing one
+residual -3 0 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -1 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -2 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -24 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -25 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -120 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -121 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0 0
+#2nd is 5, all types, trailing one
+residual -3 0 -25 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -1 -25 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -2 -25 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -48 -25 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -49 -25 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -240 -25 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -241 -25 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0 0
+#2nd is 6, all types, trailing one
+residual -3 0 -49 -25 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0
+residual -3 -1 -49 -25 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0
+residual -3 -2 -49 -25 -13 -7 -4 -1 -1 -1 0 0 0 0 0 0
+#2nd is 1, all types, trailing one
+residual -3 0 -2 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -1 -2 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -2 -2 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -3 -2 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -4 -2 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -15 -2 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -16 -2 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+#2nd is 2, all types, trailing one
+residual -3 0 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -1 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -2 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -6 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -30 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+residual -3 -31 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0
+#2nd is 3, all types, trailing one
+residual -3 0 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -1 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -2 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -12 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -60 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0
+residual -3 -61 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0 0
+#2nd is 4, all types, trailing one
+residual -3 0 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -1 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -2 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -24 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -25 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -120 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0
+residual -3 -121 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0 0
+#2nd is 5, all types, trailing one
+residual -3 0 -25 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0
+residual -3 -1 -25 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0
+residual -3 -2 -25 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0
+residual -3 -48 -25 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0
+residual -3 -49 -25 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0
+residual -3 -240 -25 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0
+residual -3 -241 -25 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0 0
+#2nd is 6, all types, trailing one
+residual -3 0 -49 -25 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0
+residual -3 -1 -49 -25 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0
+residual -3 -2 -49 -25 -13 -7 -4 -1 -1 -1 -1 0 0 0 0 0
+#others
+residual 0 3 0 1 -1 -1 0 1 0 0 0 0 0 0 0 0
+residual -2 4 3 -3 0 0 -1 0 0 0 0 0 0 0 0 0
