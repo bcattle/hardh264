@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE>Zexia H.264 Hardware Encoder in VHDL</TITLE>
+</HEAD>
+<BODY>
+<H1>H.264 Hardware Encoder in VHDL</H1>
+
+<P>A hardware h264 video encoder written in VHDL suited to IP cameras and
+megapixel cameras. Designed to be synthesized into an FPGA. Initial testing is
+using Xilinx tools and FPGAs but it is not specific to Xilinx.</P>
+
+<P>Directory structure:</P>
+<UL>
+<LI>doc - documetation</LI>
+<LI>src - vhdl source (synthesizable)</LI>
+<LI>tests - test code and test vectors</LI>
+</UL>
+
+<P>Source code and other files are released here under a BSD-style licence</P>
+
+<P>This is a mirror of the original project located at <A HREF="http://hardh264.sourceforge.net/">http://hardh264.sourceforge.net/</A></P>
+
+<H1><I>Notes and usage information</I></H1>
+<P ALIGN=LEFT>The H.264 hardware encoder is designed as a modular
+system with small, efficient, low power components doing well defined
+tasks.  The principle design aim was to make an scalable encoder for
+megapixel images suitable for use in camera heads and low power
+recorders.</P>
+<P ALIGN=LEFT>The encoder is not designed to be all things to all
+people, but rather designed to efficiently implement a non-interlaced
+Base Profile with no limit to the number of streams or video
+resolution. 
+</P>
+<P ALIGN=LEFT>As such few generic parameters are provided, but
+components can be replaced as needed to customize the encoder
+to a specific application.  For example, only CAVLC encoding is
+performed, but this is performed by the h264cavlc and h264header
+modules only.  If required, these can be replaced by custom modules
+to perform another form of encoding.</P>
+<H2>A tour of the Components</H2>
+<P>A diagram of the principle components can be found below or in the CVS respository.</P>
+<IMG SRC="http://hardh264.sourceforge.net/H264-encoder-manual-diagram.gif">
+<P>Video comes in at the top, and is usually written to (external)
+RAM to buffer it temporarily. When needed it is read into the
+prediction components such as intra4x4.</P>
+<P>Outputs from the prediction components pour through the transform
+loop: coretransform, quantise, dequantise, invtransform, reconstruct.
+  For intra encoding, these reconstructed pixels are required
+immediately to predict the next block, in addition they are also
+written to (external) RAM for use for the next inter coded frame.</P>
+<P>Because of the feedback, especially for intra encoding, this
+transform loop is timing-critical, since the latency is important as
+well as the throughput.  Transform modules need all data in before
+they can output the first output pixel, but the delay between the
+last pixel in and the first pixel out is minimal.</P>
+<P>For blocks which use DC as well as AC components, a 2x2 DC
+transform (Hadamard transform) is also provided as part of the
+feedback loop.  In order to speed the process, the intra8x8cc module
+(which encodes chroma for intra encoding) outputs the sums of each
+block as a separate DC data stream which is fed into the first
+dctransform.</P>
+<P>Output from quantise is fed to the buffer which delays and
+reorders the blocks for output to the cavlc module which encodes the
+data.   Header data is mixed in after cavlc, and the stream is turned
+into a byte stream by tobytes, which also stuffs 03 bytes to prevent
+startcode emulation.  The output from tobytes is a NAL, and a done
+signal is asserted at the end.</P>
+<P>It is up to higher level code to add Annex B startcodes between
+frames (00 00 00 01), or else count and buffer the bytes output and
+add a header in mp4 or rtp format, or other format as required.</P>
+<P>Multiple streams may be simultaneously encoded by the H.264
+encoder; these may be of different resolutions.  There is no design
+limit to the video resolution.</P>
+<P>The components are independently upgradeable if required.   
+</P>
+<H2>Target hardware</I></H2>
+<P>The design has been compiled for the following devices:</P>
+<UL>
+	<LI><P>Xilinx Spartan 3 family - (3174 Slices)</P>
+	<LI><P>Altera Cyclone III family &ndash; (26,754 LEs)</P>
+</UL>
+<P>It is likely to compile successfully for most other FPGA and ASIC
+technologies.</P>
+<P>This encoder is being built into a commercial application which
+uses a Spartan 3A 1400 which is about 4 times the size of the
+requirement quoted above.</P>
+<P>Note that the Cyclone III is rather larger than the Spartan 3 due
+to the use of small or unlatched RAM elements in the design which the
+Spartan can map to distributed RAM but the Cyclone needs to implement
+in discrete logic.  A modification to intra4x4 and intra8x8cc
+components to permit TOPI to have a two-clock latency rather than one
+would permit latched RAM in this situation.</P>
+<H2>Parameters: PP and SP</H2>
+<P>It is necessary to include Picture Parameters (PP) and Stream
+Parameters (SP) to specify the details of the encoder for the decoder
+to use.   These are usually encoded as separate NAL units which can
+be transmitted immediately before the first NAL unit of image stream.</P>
+<P>Some recommended Stream Parameters (SP) are:</P>
+<DL>
+	<DT><TT>profile_idc                                  01000010 ( 66) </TT>
+	<DT><TT>constrained_set0_flag                               0 (  0) </TT>
+	<DT><TT>constrained_set1_flag                               0 (  0) </TT>
+	<DT><TT>constrained_set2_flag                               0 (  0) </TT>
+	<DT><TT>constrained_set3_flag                               0 (  0) </TT>
+	<DT><TT>reserved_zero_4bits                              0000 (  0) </TT>
+	<DT><TT>level_idc                                    00101000 ( 40) </TT>
+	<DT><TT>seq_parameter_set_id                                1 (  0) </TT>
+	<DT><TT>log2_max_frame_num_minus4                           1 (  0) </TT>
+	<DT><TT>pic_order_cnt_type                                011 (  2) </TT>
+	<DT><TT>num_ref_frames                                    010 (  1) </TT>
+	<DT><TT>gaps_in_frame_num_value_allowed_flag                0 (  0) </TT>
+	<DT><TT>pic_width_in_mbs_minus1                     000010110 ( 21)
+	**</TT><DT>
+	<TT>pic_height_in_map_units_minus1              000010010 ( 17) **</TT><DT>
+	<TT>frame_mbs_only_flag                                 1 (  1) </TT>
+	<DT><TT>direct_8x8_inference_flag                           1 (  1) </TT>
+	<DT><TT>frame_cropping_flag                                 0 (  0) </TT>
+	<DT><TT>vui_parameters_present_flag                         0 (  0) </TT>
+	<DT><BR>
+</DL>
+<P>** Replace the pic_width and pic_height with appropriate values,
+these are in 16-pixel-units and thus the parameters here encode an
+image of 352x288.</P>
+<DL>
+	<DT>As a NAL, these can be encoded as (hex bytes):<DT>
+	<TT>67 42 00 28 DA 05 82 59</TT><DT>
+	<BR>
+</DL>
+<P>Some recommended Picture Parameters (PP) are:</P>
+<DL>
+	<DT><TT>pic_parameter_set_id                                1 (  0) </TT>
+	<DT><TT>seq_parameter_set_id                                1 (  0) </TT>
+	<DT><TT>entropy_coding_mode_flag                            0 (  0) </TT>
+	<DT><TT>pic_order_present_flag                              0 (  0) </TT>
+	<DT><TT>num_slice_groups_minus1                             1 (  0) </TT>
+	<DT><TT>num_ref_idx_l0_active_minus1                        1 (  0) </TT>
+	<DT><TT>num_ref_idx_l1_active_minus1                        1 (  0) </TT>
+	<DT><TT>weighted_pred_flag                                  0 (  0) </TT>
+	<DT><TT>weighted_bipred_idc                                00 (  0) </TT>
+	<DT><TT>pic_init_qp_minus26                                 1 (  0) </TT>
+	<DT><TT>pic_init_qs_minus26                                 1 (  0) </TT>
+	<DT><TT>chroma_qp_index_offset                              1 (  0) </TT>
+	<DT><TT>deblocking_filter_control_present_flag              0 (  0) </TT>
+	<DT><TT>constrained_intra_pred_flag                         0 (  0) </TT>
+	<DT><TT>redundant_pic_cnt_present_flag                      0 (  0) </TT>
+	<DT><BR>
+	<DT>As a NAL these can be encoded as (hex bytes):<DT>
+	<TT>68 CE 38 80</TT><DT>
+	<BR>
+	<DT>So encoding both using Annex B format (ie, with startcode of 00
+	00 00 01), gives:<DT>
+	<TT>00 00 00 01 <TT>67 42 00 28 DA 05 82 59</TT></TT><DT>
+	<TT>00 00 00 01 68 CE 38 80</TT><DT>
+	<BR>
+	<DT>These bytes can be put at the start of the stream (and repeated
+	if needed before any IDR frame).<DT>
+	<BR>
+</DL>
+<H2>Clocks</H2>
+<P ALIGN=LEFT>There are two clocks in use by the modules, CLK which
+is nominally the pixel clock rate, with a design frequency of 60MHz
+or below, and CLK2 which is a double rate clock and should run at
+exactly twice CLK rate.   CLK is used in the h264cavlc module and
+also by the back end which emits the byte stream.  CLK2 is used by
+the prediction and transform logic which works at higher data rates
+than the pixel rate.  As a result, 512 double rate clocks are
+available for each macroblock (256 pixels) for the prediction and
+transform logic feedback loop.</P>
+<H2>Top level</H2>
+<P>A skeleton top level is provided, to allow a real one to be
+written for your application.  A simple top level is provided for
+simulation which reads and writes files and can dump intermediate
+data and an annotated output bit stream if required.</P>
+<H2>RAM</H2>
+<P>At minimum, an entire uncompressed reference image must be
+buffered in RAM to allow inter prediction[*].  Usually the incoming
+image is buffered as well as the reference image, so two copies might
+be needed.  If encoding multiple streams, images from all streams
+need to be buffered.  Depending on resolution, this might be a lot of
+memory, and thus it is anticipated that this is implemented off-chip.</P>
+<P>[*] of course, you could use intra prediction only and thus avoid
+this overhead, but compression is then usually around 10:1, rather
+than the 50:1 quoted for inter compressed streams.  The actual
+compression will vary with the contents of the picture stream.</P>
+<H2>Prediction components</H2>
+<P ALIGN=LEFT>The intra prediction currently available (intra4x4 and
+intra8x8cc) only considers a subset of possible modes, and uses a
+simple SAD (sum of absolute differences) comparison.  This makes the
+intra frames a little larger than they otherwise might be, but tests
+against reference software (which can choose a wider range of modes
+and other better comparison computations) shows only a few percent
+improvement.</P>
+<P ALIGN=LEFT>Also, only a simple inter prediction (p-frames)
+component is available at present.   Zexia has others available but
+they cannot be released at present under an open source license; they
+will probably be released once commercial agreements expire.  If you
+want to work on this, please drop me an email, since a pool of good
+inter prediction components will enhance this <SPAN LANG="en-GB">codec</SPAN>
+and I'd be pleased to help.</P>
+<P ALIGN=LEFT>Since the target is Base Profile, no attempt has been
+made to encode B-frames, however the same cavlc and transform loop
+can be used so it's just a case of modifying the front end prediction
+and header generation.</P>
+<H2>Patents</H2>
+<P>H.264 is covered by patents, you will need a license from MPEG-LA.
+ According to the MPEG-LA web site (http://www.mpegla.com), there is
+no royalty payable on less than 100,000 units.</P>
+<P>The author knows of no other patents which cover this encoder, but
+that doesn't mean to say there are none (see the disclaimer below).</P>
+<H2>Copyright (BSD-style license)</H2>
+<DL>
+	<DT>Written by Andy Henson<DT>
+	Copyright (c) 2008 Zexia Access Ltd<DT>
+	All rights reserved.<DT>
+	--<DT>
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions
+	are met:<DT>
+	   * Redistributions of source code must retain the above copyright<DT>
+	      notice, this list of conditions and the following disclaimer.<DT>
+	   * Redistributions in binary form must reproduce the above
+	copyright<DT>
+	      notice, this list of conditions and the following disclaimer
+	in the<DT>
+	     documentation and/or other materials provided with the
+	distribution.<DT>
+	   * Neither the name of the Zexia Access Ltd nor the<DT>
+	      names of its contributors may be used to endorse or promote
+	products<DT>
+	      derived from this software without specific prior written
+	permission.<DT>
+	--<DT>
+	THIS SOFTWARE IS PROVIDED BY ZEXIA ACCESS LTD ``AS IS'' AND ANY
+	EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+	PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL ZEXIA ACCESS LTD OR ANDY
+	HENSON BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+	EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+	PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+	PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+	OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+	USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+	DAMAGE.<DT>
+	<BR>
+	<DT><BR>
+</DL>
+<DIV TYPE=FOOTER>
+	<P><FONT COLOR="#4c4c4c"><A HREF="http://www.zexia.co.uk/">Zexia Access Ltd</A> &copy; 2008
+		- H.264 Hardware Encoder</FONT>
+</DIV></BODY>
+</HTML>
